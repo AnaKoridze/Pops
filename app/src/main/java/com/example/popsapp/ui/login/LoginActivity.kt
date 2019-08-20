@@ -21,7 +21,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         /**
-         * If user is not logged, open [LoginActivity]
+         * If user is logged, open [OrderListActivity]
          */
         if (SharedPrefHelper.getSessionToken(this) != null) {
             startActivity(Intent(this, OrderListActivity::class.java))
@@ -30,7 +30,9 @@ class LoginActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_login)
 
-        //
+        /**
+         * Pre-fill the fields for faster testing
+         */
         username.setText("techtesting-dev")
         password.setText("GFVSK-oNHB6")
 
@@ -64,7 +66,14 @@ class LoginActivity : AppCompatActivity() {
         })
 
         login.setOnClickListener {
-            loginViewModel.login(username.text.toString(), password.text.toString())
+            /**
+             * Check if fields are not empty before executing login request
+             */
+            if (!username.text.isNullOrEmpty() && !password.text.isNullOrEmpty()) {
+                loginViewModel.login(username.text.toString(), password.text.toString())
+            } else {
+                Toast.makeText(applicationContext, R.string.fields_empty, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

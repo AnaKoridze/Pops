@@ -14,4 +14,5 @@
     <string name="error_login">une erreur est survenue lors de l\'authentification</string>
     <string name="logout">Sign out</string>
     <string name="error_fetching_data">Une erreur est survenue lors de récuperation de données.</string>
+    <string name="fields_empty">Veuillez vérifier les informations saisies</string>
 </resources>
